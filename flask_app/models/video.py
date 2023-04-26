@@ -8,20 +8,25 @@ class Video:
         self.id = data['id']
         self.title = data['title']
         self.description = data['description']
-        self.file_name = data['file_name']
         self.updated_at = data['updated_at']
         self.created_at = data['created_at']
         self.creator = None
 
     @classmethod
     def save_vid(cls,data):
-        query = "INSERT INTO videos ( title, description, file_name, updated_at, created_at ) VALUES ( %(title)s, %(description)s, '', NOW(), NOW());"
+        query = "INSERT INTO videos ( title, description, updated_at, created_at ) VALUES ( %(title)s, %(description)s, NOW(), NOW());"
         return connectToMySQL(Video.db).query_db(query,data)
 #put in when you've got it done   user_id,   %(user_id)s,    
-
     @classmethod
-    def upload_vid(cls,data):
-        query = "UPDATE videos SET file_name=%(file_name)s"
+    def delete(cls,data):
+        query = "DELETE FROM videos WHERE id = %(id)s"
+        squery = "DELETE FROM categories WHERE video_id = %(id)s"
+        connectToMySQL(Video.db).query_db(squery,data)
+        return connectToMySQL(Video.db).query_db(query,data)
+    
+    @classmethod
+    def update_vid(cls,data):
+        query = "UPDATE videos SET title=%(title)s, description=%(description)s WHERE id = %(id)s"
         return connectToMySQL(Video.db).query_db(query,data)
 
     @classmethod
@@ -29,7 +34,16 @@ class Video:
         query = "SELECT * FROM videos WHERE id = %(id)s;"
         results = connectToMySQL('group_project').query_db(query,data)
         return cls(results[0])
-
+    
+    @classmethod
+    def get_all(cls,):
+        query = "SELECT * FROM videos;"
+        results = connectToMySQL(Video.db).query_db(query)
+        videos = []
+        for video in results:
+            videos.append( cls(video) )
+        return videos
+    
     @classmethod
     def get_vids(cls,data):
         query = """

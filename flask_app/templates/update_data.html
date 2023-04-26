@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/update/data/{{id}}", method="POST">
+        <p>title</p>
+        <input type="text" name="title">
+        <p>description</p>
+        <textarea name="description" cols="30" rows="5"></textarea>
+        {% if 'video_id' not in session %}
+            <input type="submit" value="Next">
+        {% endif %}
+    </form>
+    <form action="/update/{{id}}" method="post" enctype="multipart/form-data">
+        <input type="file" name="video" accept=".mp4">
+        {% if 'video_id' in session %}
+            <input type="submit" name="Upload">
+        {% endif %}
+        </form>
+</body>
+</html>
