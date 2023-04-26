@@ -7,11 +7,13 @@ class Comment:
     def __init__(self,data):
         self.id = data['id']
         self.comment = data['comment']
+        self.comment_id = data['comment_id']
         self.video_id = data['video_id']
 #        self.user_id = data['user_id']
         self.updated_at = data['updated_at']
         self.created_at = data['created_at']
         self.creator = None
+        self.sub = None
         
     @classmethod
     def create_comment(cls,data):
@@ -26,6 +28,18 @@ class Comment:
         comments = []
         for comment in results:
             comments.append( cls(comment) )
+        print(comments)
+        for comment in comments:
+            comment.sub = []
+            c=0
+            while c <= (len(comments)-1):
+                if comment.id == comments[c].comment_id:
+                    comment.sub.append(comments[c])
+                    comments.pop(c)
+                    print(comments)
+                else:
+                    c = c + 1
+                    print(c)    
         return comments
     
     @classmethod

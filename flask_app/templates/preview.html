@@ -32,16 +32,12 @@
                 <input type="hidden" name="comment_id" value="{{comment.id}}">
                 <input type="submit" name="" id="">
             </form>
-        {% endif %}
-<!--
-        {% for i in range(len(comments)) %}
-            {% if comments[i].comment_id == comment.id %}
-                <p>{{ comments[i].comment }}</p>
-                {% comments.remove[i] %}
-            {% endif %}
-        {% endfor %}
-        need to figure it out as a class and just hav a if sub
--->        
+        {% endif %} 
+        {% if comment.sub %}
+            {% for i in comment.sub %}
+            <p>Sub:   {{i.comment}}</p>
+            {% endfor %}
+        {% endif %} 
     {% endfor %}
 </body>
 </html>
