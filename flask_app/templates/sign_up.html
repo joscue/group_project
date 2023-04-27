@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./static/howhub.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="col">
+        <h1 style="padding-left:700px;">Register</h1>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <form action="/register" method="post">
+                            <div class="form">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" placeholder="first name" name="first_name">
+                            </div>
+                            <div class="form">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" placeholder="last name" name="last_name">
+                            </div>
+                            <div class="form">
+                                <label>Email</label>
+                                <input type="text" class="form-control" placeholder="email" name="email">
+                            </div>
+                            <div class="form">
+                                <label>Birthday</label>
+                                <input type="birthday" class="form-control" placeholder="birthday" value=""
+                                    name="birthday">
+                            </div>
+                            <div class="form">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="Password" value=""
+                                    name="password">
+                            </div>
+                            <div class="form">
+                                <label>Confirm Password</label>
+                                <input type="password" class="form-control" placeholder="Password" value=""
+                                    name="confirm-password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+</body>
+
+</html>
