@@ -7,7 +7,7 @@ import os
 
 #--creating video/////////////////////////////////////////////////////
 
-@app.route('/')
+@app.route('/new/vid')
 def input_vid_data():
     return render_template('create_vid.html')
 
@@ -21,13 +21,8 @@ def create_vid_data():
     if 'video_id' in  session:
         session.pop('video_id')
     session['video_id'] = video
-    return redirect('/upload/vid')
+    return redirect('/new/vid')
 # + video_id
-
-@app.route('/upload/vid')
-def upload_vid():
-
-    return render_template('upload_vid.html')
 
 ALLOWED_EXTENSIONS = ['.mp4']
 
@@ -56,7 +51,7 @@ def upload():
 @app.route('/update/vdata/<int:num>')
 def update_d(num):
 
-    return render_template('update_data.html', id = num)
+    return render_template('update_vid.html', id = num)
 
 @app.route('/update/data/<int:num>', methods=['POST'])
 def update_data(num):
@@ -101,4 +96,4 @@ def prev(num):
 
 @app.route('/dashboard')
 def dash():
-    return render_template('dashboard.html', videos = Video.get_vids())
+    return render_template('dashboard.html', videos = Video.get_all())

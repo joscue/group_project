@@ -12,7 +12,15 @@
         <input type="text" name="title">
         <p>description</p>
         <textarea name="description" cols="30" rows="5"></textarea>
-        <input type="submit" value="Next">
+        {% if 'video_id' not in session %}
+            <input type="submit" value="Next">
+        {% endif %}
+    </form>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="video" accept=".mp4">
+        {% if 'video_id' in session %}
+            <input type="submit" name="Upload">
+        {% endif %}
     </form>
 </body>
 </html>
