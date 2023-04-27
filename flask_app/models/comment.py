@@ -28,7 +28,6 @@ class Comment:
         comments = []
         for comment in results:
             comments.append( cls(comment) )
-        print(comments)
         for comment in comments:
             comment.sub = []
             c=0
@@ -36,10 +35,8 @@ class Comment:
                 if comment.id == comments[c].comment_id:
                     comment.sub.append(comments[c])
                     comments.pop(c)
-                    print(comments)
                 else:
-                    c = c + 1
-                    print(c)    
+                    c = c + 1 
         return comments
     
     @classmethod

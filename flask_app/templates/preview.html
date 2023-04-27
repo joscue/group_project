@@ -7,37 +7,44 @@
     <title>video</title>
 </head>
 <body>
-    <video width="640" height="480" controls>
-        <source src="/static/videos/{{video.id}}.mp4">
-    </video>
-    <h2>{{video.title}}</h2>
-    <h3>{{video.description}}</h3>
+    <div>
+        <video width="65%" controls>
+            <source src="/static/videos/{{video.id}}.mp4">
+        </video>
+        <h2>{{video.title}}</h2>
+        <h3>{{video.description}}</h3>
 
-    {% if 'comment_id' not in session %}
-    <p><a href="http://localhost:5000/start/comment/{{video.id}}/0">Comment</a></p>
-    {% endif %}
+        {% if 'comment_id' not in session %}
+        <p><a href="http://localhost:5000/start/comment/{{video.id}}/0">Comment</a></p>
+        {% endif %}
 
-    {% if session['comment_id'] == 0 %}
-        <form action="/create/comment/{{video.id}}" method="POST">
-            <textarea name="comment" id="" cols="30" rows="10"></textarea>
-            <input type="hidden" name="comment_id" value="0">
-            <input type="submit" name="" id="">
-        </form>
-    {% endif %}
-    {% for comment in comments %}
-        <p>{{comment.comment}} <a href="http://localhost:5000/start/comment/{{video.id}}/{{comment.id}}">Comment</a></p>
-        {% if session['comment_id'] == comment.id %}
+        {% if session['comment_id'] == 0 %}
             <form action="/create/comment/{{video.id}}" method="POST">
                 <textarea name="comment" id="" cols="30" rows="10"></textarea>
-                <input type="hidden" name="comment_id" value="{{comment.id}}">
+                <input type="hidden" name="comment_id" value="0">
                 <input type="submit" name="" id="">
             </form>
-        {% endif %} 
-        {% if comment.sub %}
-            {% for i in comment.sub %}
-            <p>Sub:   {{i.comment}}</p>
-            {% endfor %}
-        {% endif %} 
-    {% endfor %}
+        {% endif %}
+        {% for comment in comments %}
+            <p>{{comment.comment}} <a href="http://localhost:5000/start/comment/{{video.id}}/{{comment.id}}">Comment</a></p>
+            {% if session['comment_id'] == comment.id %}
+                <form action="/create/comment/{{video.id}}" method="POST">
+                    <textarea name="comment" id="" cols="30" rows="10"></textarea>
+                    <input type="hidden" name="comment_id" value="{{comment.id}}">
+                    <input type="submit" name="" id="">
+                </form>
+            {% endif %} 
+            {% if comment.sub %}
+                {% for i in comment.sub %}
+                <p>Sub:   {{i.comment}}</p>
+                {% endfor %}
+            {% endif %} 
+        {% endfor %}        
+    </div>
+    <div>
+        {% for video_link in video_links %}
+            <a href="http://localhost:5000/video/{{video_link.id}}"><img src="/static/images/{{video_link.id}}.jpg" alt="{{video_link.title}} no image">{{video_link.title}}</a>
+        {% endfor %}
+    </div>
 </body>
 </html>

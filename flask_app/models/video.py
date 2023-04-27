@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
+import os, cv2
 #from flask_app.models import user, business
 
 class Video:
@@ -16,6 +17,7 @@ class Video:
     def save_vid(cls,data):
         query = "INSERT INTO videos ( title, description, updated_at, created_at ) VALUES ( %(title)s, %(description)s, NOW(), NOW());"
         return connectToMySQL(Video.db).query_db(query,data)
+    
 #put in when you've got it done   user_id,   %(user_id)s,    
     @classmethod
     def delete(cls,data):
@@ -76,7 +78,16 @@ class Video:
             flash("")
             is_valid = False
 
-    
+    @staticmethod
+    def make_thumbnail(data):
+        thumb = cv2.VideoCapture('flask_app/static/videos/' + data['id'] + '.mp4')
+        the_frame = 0
+        while (True):
+            success, frame = thumb.read()
+            cv2.imwrite('flask_app/static/images/' + data['id'] + '.jpg', frame)
+            break
+
+
 class Category:
     db = 'group_project'
     def __init__(self,data):

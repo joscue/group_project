@@ -44,8 +44,9 @@ def upload():
 #    if video and allowed_file(video.filename):
     id = str(session['video_id'])
     session.pop('video_id')
+    
     video.save('flask_app/static/videos/' + id + '.mp4')
-
+    Video.make_thumbnail({'id':id})
 #    session['video'] = video.filename
     return redirect('/video/' + id)
 #    return 'invalid video file'
@@ -81,6 +82,7 @@ def update_vid(num):
     id = str(num)
     os.remove('flask_app/static/videos/' + id + '.mp4')
     video.save('flask_app/static/videos/' + id + '.mp4')
+    Video.make_thumbnail({'id':str(num)})
     return redirect('/video/' + id)
 
 #--delete//////////////////////////////////////////////////
@@ -95,7 +97,7 @@ def delete_vid(id):
 @app.route('/video/<int:num>')
 def prev(num):
 
-    return render_template('preview.html', video = Video.get_by_id({'id':num}), comments = Comment.get_all({'id':num}))
+    return render_template('preview.html', video = Video.get_by_id({'id':num}), comments = Comment.get_all({'id':num}), video_links = Video.get_all())
 
 @app.route('/dashboard')
 def dash():
