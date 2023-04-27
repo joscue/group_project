@@ -13,14 +13,37 @@ def input_vid_data():
 
 @app.route('/create/vid/', methods=["POST"])
 def create_vid_data():
+    print(session['user_id'])
     v_data = {
         'title': request.form['title'],
-        'description': request.form['description']
+        'description': request.form['description'],
+        'user_id': session['user_id']
     }
     video = Video.save_vid(v_data)
     if 'video_id' in  session:
         session.pop('video_id')
     session['video_id'] = video
+    c_data = {
+        'boats': request.form['boats'],
+        'bushcraft': request.form['bushcraft'],
+        'cabinetry': str(request.form['cabinetry']),
+        'carpentry': request.form['carpentry'],
+        'cars': request.form['cars'],
+        'electronics': request.form['electronics'],
+        'home_electricity': request.form['home_electricity'],
+        'hvac': request.form['hvac'],
+        'machining': request.form['machining'],
+        'motorcycles': request.form['motorcycles'],
+        'planes': request.form['planes'],
+        'plumbing': request.form['plumbing'],
+        'roofing': request.form['roofing'],
+        'tractors': request.form['tractors'],
+        'welding': request.form['welding'],
+        'wood_working': request.form['wood_working'],
+        'printing': request.form['printing'],
+        'video_id': session['video_id']
+    }
+    Category.create_category(c_data)
     return redirect('/new/vid')
 # + video_id
 
@@ -97,6 +120,8 @@ def prev(num):
 
 @app.route('/dashboard')
 def dash():
+    if 'video_id' in  session:
+        session.pop('video_id')
     return render_template('dashboard.html', videos = Video.get_all())
 
 @app.route('/categories/<string:cat>')
@@ -133,7 +158,7 @@ def category_search(cat):
         video = Video.get_v_welding()
     if cat == 'wood_working':
         video = Video.get_v_ww()
-    if cat == '3d_printing':
+    if cat == 'printing':
         video = Video.get_v_3dp()
 
     return render_template('category.html', videos = video)

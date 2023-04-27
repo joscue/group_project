@@ -12,9 +12,99 @@
         <input type="text" name="title">
         <p>description</p>
         <textarea name="description" cols="30" rows="5"></textarea>
+        <div>
+            <div>
+                <input type="checkbox" name="boats" value="true">
+                <label for="vehicle1"> Boats</label><br> 
+                <input type="hidden" name="boats" value="false">                
+            </div>    
+            <div>
+                <input type="checkbox" name="bushcraft" value="true">
+                <input type="hidden" name="bushcraft" value="false">     
+                <label for="vehicle1"> Bushcraft</label><br>            
+            </div>
+            <div>
+
+                <input type="checkbox" name="cabinetry" value="true">
+                <input type="hidden" name="cabinetry" value="false">                
+                <label for="vehicle1">  Cabinetry</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="carpentry" value="true">
+                <input type="hidden" name="carpentry" value="false">     
+                <label for="vehicle1"> Carpentry</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="cars" value="true">
+                <input type="hidden" name="cars" value="false">     
+                <label for="vehicle1"> Cars</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="electronics" value="true">
+                <input type="hidden" name="electronics" value="false">     
+                <label for="vehicle1"> Electronics</label><br>            
+            </div>        
+            <div>
+                <input type="checkbox" name="home_electricity" value="true">
+                <input type="hidden" name="home_electricity" value="false">     
+                <label for="vehicle1"> Home electricity</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="hvac" value="true">
+                <input type="hidden" name="hvac" value="false">     
+                <label for="vehicle1"> HVAC</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="machining" value="true">
+                <input type="hidden" name="machining" value="false">     
+                <label for="vehicle1"> Machining</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="motorcycles" value="true">
+                <input type="hidden" name="motorcycles" value="false">     
+                <label for="vehicle1"> Mototrcycles</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="planes" value="true">
+                <input type="hidden" name="planes" value="false">     
+                <label for="vehicle1"> Planes</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="plumbing" value="true">
+                <input type="hidden" name="plumbing" value="false">     
+                <label for="vehicle1"> Plumbing</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="roofing" value="true">
+                <input type="hidden" name="roofing" value="false">     
+                <label for="vehicle1"> Roofing</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="tractors" value="true">
+                <input type="hidden" name="tractors" value="false">     
+                <label for="vehicle1"> Tractors</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="welding" value="true">
+                <input type="hidden" name="welding" value="false">     
+                <label for="vehicle1"> Welding</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="wood_working" value="true">
+                <input type="hidden" name="wood_working" value="false">     
+                <label for="vehicle1"> Wood working</label><br>            
+            </div>
+            <div>
+                <input type="checkbox" name="printing" value="true">
+                <input type="hidden" name="printing" value="false">     
+                <label for="vehicle1"> 3d Printing</label><br>            
+            </div>
+        </div>
         {% if 'video_id' not in session %}
             <input type="submit" value="Next">
         {% endif %}
+
+
     </form>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="video" accept=".mp4">

@@ -4,7 +4,7 @@ import os, cv2
 #from flask_app.models import user, business
 
 class Video:
-    db = 'group_project'
+    db = 'howhub'
     def __init__(self,data):
         self.id = data['id']
         self.title = data['title']
@@ -15,7 +15,7 @@ class Video:
 
     @classmethod
     def save_vid(cls,data):
-        query = "INSERT INTO videos ( title, description, updated_at, created_at ) VALUES ( %(title)s, %(description)s, NOW(), NOW());"
+        query = "INSERT INTO videos ( title, description, user_id, updated_at, created_at ) VALUES ( %(title)s, %(description)s, %(user_id)s, NOW(), NOW());"
         return connectToMySQL(Video.db).query_db(query,data)
     
 #put in when you've got it done   user_id,   %(user_id)s,    
@@ -34,7 +34,7 @@ class Video:
     @classmethod
     def get_by_id(cls,data):
         query = "SELECT * FROM videos WHERE id = %(id)s;"
-        results = connectToMySQL('group_project').query_db(query,data)
+        results = connectToMySQL('howhub').query_db(query,data)
         return cls(results[0])
     
     @classmethod
@@ -255,7 +255,7 @@ class Video:
             this_job = cls(row)
             jobs.append(this_job)
         return jobs
-    
+
     @classmethod
     def get_v_ww(cls):
         query = """
@@ -275,7 +275,7 @@ class Video:
         query = """
                 SELECT * FROM categories
                 JOIN videos on categories.video_id = videos.id
-                WHERE categories.3d_printings = 'true';
+                WHERE categories.printing = 'true';
                 """
         results = connectToMySQL(cls.db).query_db(query)
         jobs =[]
@@ -303,7 +303,7 @@ class Video:
 
 
 class Category:
-    db = 'group_project'
+    db = 'howhub'
     def __init__(self,data):
         self.id = data['id']
         self.boats = data['boats']
@@ -329,5 +329,5 @@ class Category:
 
     @classmethod
     def create_category(cls,data):
-        query = "INSERT INTO categories ( boats, bushcraft, cabinetry, carpentry, cars, electronics, home_electricity, hvac, machining, motorcycles, planes, plumbing, roofing, tractors, welding, wood_working, printing, created_at, updated_at ) VALUES ( %(boats)s, %(bushcraft)s, %(cabinetry)s, %(carpentry)s, %(cars)s, %(electronics)s, %(home_electricity)s, %(hvac)s, %(machining)s,%(motorcycles)s,%(planes)s,%(plumbing)s,%(roofing)s,%(tractors)s,%(welding)s,%(wood_working)s,%(printing)s, NOW(), NOW() );"
+        query = "INSERT INTO categories ( boats, bushcraft, cabinetry, carpentry, cars, electronics, home_electricity, hvac, machining, motorcycles, planes, plumbing, roofing, tractors, welding, wood_working, printing, video_id, created_at, updated_at ) VALUES ( %(boats)s, %(bushcraft)s, %(cabinetry)s, %(carpentry)s, %(cars)s, %(electronics)s, %(home_electricity)s, %(hvac)s, %(machining)s,%(motorcycles)s,%(planes)s,%(plumbing)s,%(roofing)s,%(tractors)s,%(welding)s,%(wood_working)s,%(printing)s,%(video_id)s, NOW(), NOW() );"
         return connectToMySQL(Category.db).query_db(query,data)
