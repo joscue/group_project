@@ -1,0 +1,13 @@
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.container {
+    flex-direction: column;
+    display: flex;
+    height: 250px;
+    width: 250px;
+    align-items: center;
+}
