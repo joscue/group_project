@@ -89,6 +89,7 @@ def delete_vid(id):
 
 #--display videos/////////////////////////////////////////////////////
 
+
 @app.route('/video/<int:num>')
 def prev(num):
 
@@ -97,3 +98,42 @@ def prev(num):
 @app.route('/dashboard')
 def dash():
     return render_template('dashboard.html', videos = Video.get_all())
+
+@app.route('/categories/<string:cat>')
+def category_search(cat):
+    if cat == 'boats':
+        video = Video.get_v_boats()
+    if cat == 'bushcraft':
+        video = Video.get_v_bushcraft()
+    if cat == 'cabinetry':
+        video = Video.get_v_cabinetry()
+    if cat == 'cars':
+        video = Video.get_v_cars()
+    if cat == 'carpentry':
+        video = Video.get_v_carpentry()
+    if cat == 'electronics':
+        video = Video.get_v_electronics()
+    if cat == 'home_electricity':
+        video = Video.get_v_he()
+    if cat == 'hvac':
+        video = Video.get_v_hvac()
+    if cat == 'machining':
+        video = Video.get_v_machining()
+    if cat == 'motorcycles':
+        video = Video.get_v_motorcycles()
+    if cat == 'planes':
+        video = Video.get_v_planes()
+    if cat =='plumbing':
+        video = Video.get_v_plumbing()
+    if cat == 'roofing':
+        video = Video.get_v_roofing()
+    if cat == 'tractors':
+        video = Video.get_v_tractors()
+    if cat == 'welding':
+        video = Video.get_v_welding()
+    if cat == 'wood_working':
+        video = Video.get_v_ww()
+    if cat == '3d_printing':
+        video = Video.get_v_3dp()
+
+    return render_template('category.html', videos = video)

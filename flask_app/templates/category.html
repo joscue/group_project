@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav style="background-color:blue;" id="navbar">
+        <h1>HowHub</h1>
+        <form action="/search" method="POST">
+            <div class="form">
+                <input type="text" placeholder="Search..." class="form-control" value="" name="search_input">
+            </div>
+            <button type="submit">Search</button>
+        </form>
+    </nav>
+    <div>
+        <p>categories</p>
+        <ul>
+            <li><a href="http://localhost:5000/categories/boats">Boats</a></li>
+            <li><a href="http://localhost:5000/categories/bushcraft">Bushcraft</a></li>
+            <li><a href="http://localhost:5000/categories/cabinetry">Cabinetry</a></li>
+            <li><a href="http://localhost:5000/categories/cars">Cars</a></li>
+            <li><a href="http://localhost:5000/categories/carpentry">Carpentry</a></li>
+            <li><a href="http://localhost:5000/categories/electronics">Electronics</a></li>
+            <li><a href="http://localhost:5000/categories/home_electricity">Home electricity</a></li>
+            <li><a href="http://localhost:5000/categories/hvac">HVAC</a></li>
+            <li><a href="http://localhost:5000/categories/machining">Machining</a></li>
+            <li><a href="http://localhost:5000/categories/mototrcycles">Mototrcycles</a></li>
+            <li><a href="http://localhost:5000/categories/planes">Planes</a></li>
+            <li><a href="http://localhost:5000/categories/plumbing">Plumbing</a></li>
+            <li><a href="http://localhost:5000/categories/roofing">Roofing</a></li>
+            <li><a href="http://localhost:5000/categories/tractors">Tractors</a></li>
+            <li><a href="http://localhost:5000/categories/welding">Welding</a></li>
+            <li><a href="http://localhost:5000/categories/wood_working">Wood working</a></li>
+            <li><a href="http://localhost:5000/categories/3d_printing">3D printing</a></li>
+        </ul>
+    </div>
+    <div>
+        {% for video in videos %}
+            <a href="http://localhost:5000/video/{{video.id}}"><img src="/static/images/{{video.id}}.jpg" alt="{{video.title}} no image!!  ">{{video.title}}</a>
+        {% endfor %}
+    </div>
+</body>
+</html>

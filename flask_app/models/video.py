@@ -45,32 +45,246 @@ class Video:
         for video in results:
             videos.append( cls(video) )
         return videos
-    
+#category searches//////////////////////////////////////////////////////    
     @classmethod
-    def get_vids(cls,data):
+    def get_v_boats(cls):
         query = """
-                SELECT * FROM videos
-                JOIN categories on videos.category_id = categories.id
-                WHERE categories.%(category)s = 'true';
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.boats = 'true';
                 """
-        results = connectToMySQL(cls.db).query_db(query,data)
+        results = connectToMySQL(cls.db).query_db(query)
         jobs =[]
         for row in results:
             this_job = cls(row)
-            user_data = {
-                    "id": row['id'],
-                    "first_name": row['first_name'],
-                    "last_name": row['last_name'],
-                    "email": "",
-                    "birthday": "",
-                    "password": "",
-                    "created_at": row['created_at'],
-                    "updated_at": row['updated_at']
-            }
-            this_job.creator = user.User(user_data)
             jobs.append(this_job)
         return jobs
     
+    @classmethod
+    def get_v_bushcraft(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.bushcraft = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+    
+    @classmethod
+    def get_v_cabinetry(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.cabinetry = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+    
+    @classmethod
+    def get_v_cars(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.cars = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+    
+    @classmethod
+    def get_v_carpentry(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.carpentry = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+    
+    @classmethod
+    def get_v_electronics(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.electronics = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+    
+    @classmethod
+    def get_v_he(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.home_electricity = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+    
+    @classmethod
+    def get_v_hvac(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.hvac = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+
+    @classmethod
+    def get_v_machining(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.machining = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+
+    @classmethod
+    def get_v_morotrcycles(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.motorcycles = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+    
+    @classmethod
+    def get_v_planes(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.planes = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+
+    @classmethod
+    def get_v_plumbing(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.plumbing = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+    
+    @classmethod
+    def get_v_roofing(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.roofing = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+    
+    @classmethod
+    def get_v_tractors(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.tractors = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+    
+    @classmethod
+    def get_v_welding(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.welding = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+    
+    @classmethod
+    def get_v_ww(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.wood_working = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+    
+    @classmethod
+    def get_v_3dp(cls):
+        query = """
+                SELECT * FROM categories
+                JOIN videos on categories.video_id = videos.id
+                WHERE categories.3d_printings = 'true';
+                """
+        results = connectToMySQL(cls.db).query_db(query)
+        jobs =[]
+        for row in results:
+            this_job = cls(row)
+            jobs.append(this_job)
+        return jobs
+
+#validations//////////////////////////////////////////////////////////////
     @staticmethod
     def validate_vid(data):
         valid =  True

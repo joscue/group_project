@@ -34,11 +34,7 @@ def register():
     user_id = User.save(data)
     session['user_id'] = user_id
     session['user_name'] = data['first_name']
-    return redirect('/show')
-
-@app.route('/show')
-def show():
-    return render_template('show.html')
+    return redirect('/dashboard')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -52,7 +48,7 @@ def login():
         return redirect('/')
     session['user_id'] = user_in_db.id
     session['user_name'] = user_in_db.first_name
-    return redirect("/show")
+    return redirect("/dashboard")
 
 @app.route('/logout')
 def logout():
